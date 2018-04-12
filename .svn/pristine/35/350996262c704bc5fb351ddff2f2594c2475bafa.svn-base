@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paas.dao.sys_spareapply.ISys_spareapplyMapper"> 
+	<select id="selectsys_spareapplyById" parameterType="String" resultType="Sys_spareapply">
+		SELECT * FROM sys_spareapply WHERE ID=#{id}
+	</select>
+
+
+	<delete id="deletesys_spareapply" parameterType="String"> 
+		DELETE FROM sys_spareapply WHERE ID=#{id}
+	</delete>
+
+	<select id="selectsys_spareapplyByParam" parameterType="java.util.Map" resultType="Sys_spareapply">
+		SELECT *
+		FROM sys_spareapply
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="id != null"> AND ID =#{id} </if>
+			<if test="org_id != null"> AND ORG_ID =#{org_id} </if>
+			<if test="app_id != null"> AND APP_ID =#{app_id} </if>
+			<if test="aud_id != null"> AND AUD_ID =#{aud_id} </if>
+			<if test="mem_id != null"> AND MEM_ID =#{mem_id} </if>
+			<if test="volume != null"> AND VOLUME =#{volume} </if>
+			<if test="status != null"> AND STATUS =#{status} </if>
+			<if test="note != null"> AND NOTE =#{note} </if>
+			<if test="c_dtFrom != null"> AND unix_timestamp(C_DT) &gt;=unix_timestamp(#{c_dtFrom}) </if>
+			<if test="c_dtTo != null"> AND unix_timestamp(C_DT) &lt;=unix_timestamp(#{c_dtTo}) </if>
+			<if test="c_dt != null"> AND C_DT =#{c_dt} </if>
+			<if test="up_dtFrom != null"> AND unix_timestamp(UP_DT) &gt;=unix_timestamp(#{up_dtFrom}) </if>
+			<if test="up_dtTo != null"> AND unix_timestamp(UP_DT) &lt;=unix_timestamp(#{up_dtTo}) </if>
+			<if test="up_dt != null"> AND UP_DT =#{up_dt} </if>
+		</trim>  
+		ORDER BY ID DESC 
+		LIMIT #{fromPage},#{toPage} 
+	</select>
+
+	<select id="selectCountsys_spareapplyByParam" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(ID) 
+		FROM sys_spareapply 
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="id != null"> AND ID =#{id} </if>
+			<if test="org_id != null"> AND ORG_ID =#{org_id} </if>
+			<if test="app_id != null"> AND APP_ID =#{app_id} </if>
+			<if test="aud_id != null"> AND AUD_ID =#{aud_id} </if>
+			<if test="mem_id != null"> AND MEM_ID =#{mem_id} </if>
+			<if test="volume != null"> AND VOLUME =#{volume} </if>
+			<if test="status != null"> AND STATUS =#{status} </if>
+			<if test="note != null"> AND NOTE =#{note} </if>
+			<if test="c_dtFrom != null"> AND unix_timestamp(C_DT) &gt;=unix_timestamp(#{c_dtFrom}) </if>
+			<if test="c_dtTo != null"> AND unix_timestamp(C_DT) &lt;=unix_timestamp(#{c_dtTo}) </if>
+			<if test="c_dt != null"> AND C_DT =#{c_dt} </if>
+			<if test="up_dtFrom != null"> AND unix_timestamp(UP_DT) &gt;=unix_timestamp(#{up_dtFrom}) </if>
+			<if test="up_dtTo != null"> AND unix_timestamp(UP_DT) &lt;=unix_timestamp(#{up_dtTo}) </if>
+			<if test="up_dt != null"> AND UP_DT =#{up_dt} </if>
+		</trim>  
+	</select>
+
+	<update id="updatesys_spareapply" parameterType="Sys_spareapply">
+		UPDATE sys_spareapply 
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="id != null">ID=#{id}, </if>
+			<if test="org_id != null">ORG_ID=#{org_id}, </if>
+			<if test="app_id != null">APP_ID=#{app_id}, </if>
+			<if test="aud_id != null">AUD_ID=#{aud_id}, </if>
+			<if test="mem_id != null">MEM_ID=#{mem_id}, </if>
+			<if test="volume != null">VOLUME=#{volume}, </if>
+			<if test="status != null">STATUS=#{status}, </if>
+			<if test="note != null">NOTE=#{note}, </if>
+			<if test="c_dt != null">C_DT=#{c_dt}, </if>
+			<if test="up_dt != null">UP_DT=#{up_dt}, </if>
+		</trim>
+		WHERE ID=#{id}
+	</update>
+
+	<insert id="addsys_spareapply" parameterType="Sys_spareapply">
+		INSERT INTO sys_spareapply 
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="org_id != null">ORG_ID, </if>
+			<if test="app_id != null">APP_ID, </if>
+			<if test="aud_id != null">AUD_ID, </if>
+			<if test="mem_id != null">MEM_ID, </if>
+			<if test="volume != null">VOLUME, </if>
+			<if test="status != null">STATUS, </if>
+			<if test="note != null">NOTE, </if>
+			<if test="c_dt != null">C_DT, </if>
+			<if test="up_dt != null">UP_DT, </if>
+		</trim>
+		<trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+			<if test="org_id != null">#{org_id}, </if>
+			<if test="app_id != null">#{app_id}, </if>
+			<if test="aud_id != null">#{aud_id}, </if>
+			<if test="mem_id != null">#{mem_id}, </if>
+			<if test="volume != null">#{volume}, </if>
+			<if test="status != null">#{status}, </if>
+			<if test="note != null">#{note}, </if>
+			<if test="c_dt != null">#{c_dt}, </if>
+			<if test="up_dt != null">#{up_dt}, </if>
+		</trim>
+		<selectKey order="AFTER" resultType="long" keyProperty="id" > 
+			SELECT LAST_INSERT_ID()
+		</selectKey> 
+	</insert>
+</mapper>

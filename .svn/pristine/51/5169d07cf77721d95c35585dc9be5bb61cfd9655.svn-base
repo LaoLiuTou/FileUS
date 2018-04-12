@@ -1,0 +1,80 @@
+<html lang="zh-cn">
+  <head>
+     
+    <title>My JSP 'index.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script type="text/javascript" src="Js/jquery.js"></script>
+	<script src="Js/md5.js"></script>  
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#start").click(function(){
+			 $.ajax({
+	           url:'http://192.168.1.144/Paas/login',
+	           type:"POST",
+	           data : {'username':'13019215317','userpwd':'000000'},
+	           success:function(response) {
+	            console.log(JSON.stringify(response));
+	            $("#token").text(JSON.stringify(response));
+	            //var obj = JSON.parse(response);
+	            var  token = response["token"];
+				var timestamp = Date.parse(new Date());
+				var hash = md5(token+timestamp+"!@#$%"); 
+				
+				    $.ajax({
+				       
+ 
+  						
+				       //自有体系数据
+			           url:'http://192.168.1.144/Paas/resetPasswrod',
+			           //url:'http://192.168.1.144/zysy/exportStoneblock?page=1&size=10',
+			           //url:'http://192.168.1.144/zysy/exportMatteboard?page=1&size=10',
+			           //url:'http://192.168.1.144/zysy/exportReportMatteboard?page=1&size=10',
+			           //data : {"page":"1","size":"10"},670b14728ad9902aecba32e22fa4f6bd
+			           data : {"username":"13019215317","userpwd":"000000"},
+ 
+ 
+ 
+			           type:"POST",
+			           headers: {
+			            "token" : token,
+			            "timesamp" : timestamp,
+			            "sign" : hash
+			        	},
+			            
+			           success:function(response) {
+			            console.log(JSON.stringify(response));
+			            $("#result").text(JSON.stringify(response));
+			             // alert(response);   
+			           },
+			           error:function(response){
+			           	alert("wrong");   
+			           }   
+				    });
+	           },
+	           error:function(response){
+	           	alert("wrong");   
+	           }   
+	         }); 
+		});
+	
+	}); 
+	</script>
+  </head>
+  
+  <body>
+  TOKEN:<div id="token"></div>
+  RESULT:<div id="result"></div>
+  <input type="button" id="start" value="测试">
+ 
+  </body>
+</html>
+
+ 

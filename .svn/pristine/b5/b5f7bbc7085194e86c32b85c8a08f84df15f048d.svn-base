@@ -1,0 +1,40 @@
+package com.paas.service.sys_proapply;
+import java.util.List;
+import java.util.Map;
+import com.paas.model.sys_proapply.Sys_proapply;
+public interface ISys_proapplyService {
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_proapply selectSys_proapplyById(String id);
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_proapply> selectSys_proapplyByParam(Map paramMap); 
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_proapplyByParam(Map paramMap); 
+	/**
+ * 更新 
+ * @return 
+ */ 
+	public  int updateSys_proapply(Sys_proapply sys_proapply);
+	/**
+ * 添加 
+ * @return
+ */ 
+	public  int addSys_proapply(Sys_proapply sys_proapply);
+	/**
+ * 删除 
+ * @return 
+ */ 
+	public  int deleteSys_proapply(String id);
+
+}
+

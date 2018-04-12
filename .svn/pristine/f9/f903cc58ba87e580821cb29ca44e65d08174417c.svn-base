@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paas.dao.sys_members.ISys_membersMapper"> 
+	<select id="selectsys_membersById" parameterType="String" resultType="Sys_members">
+		SELECT * FROM sys_members WHERE ID=#{id}
+	</select>
+
+
+	<delete id="deletesys_members" parameterType="String"> 
+		DELETE FROM sys_members WHERE ID=#{id}
+	</delete>
+
+	<select id="selectsys_membersByParam" parameterType="java.util.Map" resultType="Sys_members">
+		SELECT *
+		FROM sys_members
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="id != null"> AND ID =#{id} </if>
+			<if test="org_id != null"> AND ORG_ID =#{org_id} </if>
+			<if test="rig_id != null"> AND RIG_ID =#{rig_id} </if>
+			<if test="mem_id != null"> AND MEM_ID =#{mem_id} </if>
+			<if test="username != null"> AND USERNAME =#{username} </if>
+			<if test="userpwd != null"> AND USERPWD =#{userpwd} </if>
+			<if test="displayname != null"> AND DISPLAYNAME =#{displayname} </if>
+			<if test="status != null"> AND STATUS =#{status} </if>
+			<if test="c_dtFrom != null"> AND unix_timestamp(C_DT) &gt;=unix_timestamp(#{c_dtFrom}) </if>
+			<if test="c_dtTo != null"> AND unix_timestamp(C_DT) &lt;=unix_timestamp(#{c_dtTo}) </if>
+			<if test="c_dt != null"> AND C_DT =#{c_dt} </if>
+			<if test="up_dtFrom != null"> AND unix_timestamp(UP_DT) &gt;=unix_timestamp(#{up_dtFrom}) </if>
+			<if test="up_dtTo != null"> AND unix_timestamp(UP_DT) &lt;=unix_timestamp(#{up_dtTo}) </if>
+			<if test="up_dt != null"> AND UP_DT =#{up_dt} </if>
+		</trim>  
+		ORDER BY ID DESC 
+		LIMIT #{fromPage},#{toPage} 
+	</select>
+
+	<select id="selectCountsys_membersByParam" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(ID) 
+		FROM sys_members 
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="id != null"> AND ID =#{id} </if>
+			<if test="org_id != null"> AND ORG_ID =#{org_id} </if>
+			<if test="rig_id != null"> AND RIG_ID =#{rig_id} </if>
+			<if test="mem_id != null"> AND MEM_ID =#{mem_id} </if>
+			<if test="username != null"> AND USERNAME =#{username} </if>
+			<if test="userpwd != null"> AND USERPWD =#{userpwd} </if>
+			<if test="displayname != null"> AND DISPLAYNAME =#{displayname} </if>
+			<if test="status != null"> AND STATUS =#{status} </if>
+			<if test="c_dtFrom != null"> AND unix_timestamp(C_DT) &gt;=unix_timestamp(#{c_dtFrom}) </if>
+			<if test="c_dtTo != null"> AND unix_timestamp(C_DT) &lt;=unix_timestamp(#{c_dtTo}) </if>
+			<if test="c_dt != null"> AND C_DT =#{c_dt} </if>
+			<if test="up_dtFrom != null"> AND unix_timestamp(UP_DT) &gt;=unix_timestamp(#{up_dtFrom}) </if>
+			<if test="up_dtTo != null"> AND unix_timestamp(UP_DT) &lt;=unix_timestamp(#{up_dtTo}) </if>
+			<if test="up_dt != null"> AND UP_DT =#{up_dt} </if>
+		</trim>  
+	</select>
+
+	<update id="updatesys_members" parameterType="Sys_members">
+		UPDATE sys_members 
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="id != null">ID=#{id}, </if>
+			<if test="org_id != null">ORG_ID=#{org_id}, </if>
+			<if test="rig_id != null">RIG_ID=#{rig_id}, </if>
+			<if test="mem_id != null">MEM_ID=#{mem_id}, </if>
+			<if test="username != null">USERNAME=#{username}, </if>
+			<if test="userpwd != null">USERPWD=#{userpwd}, </if>
+			<if test="displayname != null">DISPLAYNAME=#{displayname}, </if>
+			<if test="status != null">STATUS=#{status}, </if>
+			<if test="c_dt != null">C_DT=#{c_dt}, </if>
+			<if test="up_dt != null">UP_DT=#{up_dt}, </if>
+		</trim>
+		WHERE ID=#{id}
+	</update>
+	<update id="updateSys_membersPassword" parameterType="Sys_members">
+		UPDATE sys_members 
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="id != null">ID=#{id}, </if>
+			<if test="org_id != null">ORG_ID=#{org_id}, </if>
+			<if test="rig_id != null">RIG_ID=#{rig_id}, </if>
+			<if test="mem_id != null">MEM_ID=#{mem_id}, </if>
+			<if test="username != null">USERNAME=#{username}, </if>
+			<if test="userpwd != null">USERPWD=#{userpwd}, </if>
+			<if test="displayname != null">DISPLAYNAME=#{displayname}, </if>
+			<if test="status != null">STATUS=#{status}, </if>
+			<if test="c_dt != null">C_DT=#{c_dt}, </if>
+			<if test="up_dt != null">UP_DT=#{up_dt}, </if>
+		</trim>
+		WHERE USERNAME=#{username}
+	</update>
+
+	<insert id="addsys_members" parameterType="Sys_members">
+		INSERT INTO sys_members 
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="org_id != null">ORG_ID, </if>
+			<if test="rig_id != null">RIG_ID, </if>
+			<if test="mem_id != null">MEM_ID, </if>
+			<if test="username != null">USERNAME, </if>
+			<if test="userpwd != null">USERPWD, </if>
+			<if test="displayname != null">DISPLAYNAME, </if>
+			<if test="status != null">STATUS, </if>
+			<if test="c_dt != null">C_DT, </if>
+			<if test="up_dt != null">UP_DT, </if>
+		</trim>
+		<trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+			<if test="org_id != null">#{org_id}, </if>
+			<if test="rig_id != null">#{rig_id}, </if>
+			<if test="mem_id != null">#{mem_id}, </if>
+			<if test="username != null">#{username}, </if>
+			<if test="userpwd != null">#{userpwd}, </if>
+			<if test="displayname != null">#{displayname}, </if>
+			<if test="status != null">#{status}, </if>
+			<if test="c_dt != null">#{c_dt}, </if>
+			<if test="up_dt != null">#{up_dt}, </if>
+		</trim>
+		<selectKey order="AFTER" resultType="long" keyProperty="id" > 
+			SELECT LAST_INSERT_ID()
+		</selectKey> 
+	</insert>
+</mapper>

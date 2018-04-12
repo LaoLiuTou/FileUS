@@ -1,0 +1,40 @@
+package com.paas.service.sys_org;
+import java.util.List;
+import java.util.Map;
+import com.paas.model.sys_org.Sys_org;
+public interface ISys_orgService {
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_org selectSys_orgById(String id);
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_org> selectSys_orgByParam(Map paramMap); 
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_orgByParam(Map paramMap); 
+	/**
+ * 更新 
+ * @return 
+ */ 
+	public  int updateSys_org(Sys_org sys_org);
+	/**
+ * 添加 
+ * @return
+ */ 
+	public  int addSys_org(Sys_org sys_org);
+	/**
+ * 删除 
+ * @return 
+ */ 
+	public  int deleteSys_org(String id);
+
+}
+

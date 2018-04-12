@@ -1,0 +1,40 @@
+package com.paas.dao.sys_spareinfo;
+import java.util.List;
+import java.util.Map;
+import com.paas.model.sys_spareinfo.Sys_spareinfo;
+	public interface ISys_spareinfoMapper {
+	/**
+ 	* 通过id选取
+ 	* @return
+ 	*/
+	public Sys_spareinfo selectsys_spareinfoById(String id);
+	/**
+ 	* 通过查询参数获取信息
+ 	* @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_spareinfo> selectsys_spareinfoByParam(Map paramMap); 
+	/**
+		* 通过查询参数获取总条数
+	    * @return
+	*/ 
+	@SuppressWarnings("rawtypes")
+	public int selectCountsys_spareinfoByParam(Map paramMap); 
+	/**
+ 	* 更新 
+ 	* @return 
+ */ 
+	public  int updatesys_spareinfo(Sys_spareinfo sys_spareinfo);
+	/**
+ 	* 添加 
+ 	* @return
+ */ 
+	public  int addsys_spareinfo(Sys_spareinfo sys_spareinfo);
+	/**
+ 	* 删除 
+ 	* @return 
+ */ 
+public  int deletesys_spareinfo(String id);
+
+}
+

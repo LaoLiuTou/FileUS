@@ -1,0 +1,66 @@
+package com.paas.service.sys_proapply;
+import java.util.List;
+import java.util.Map;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.paas.dao.sys_proapply.ISys_proapplyMapper;
+import com.paas.model.sys_proapply.Sys_proapply;
+public class Sys_proapplyServiceImpl  implements ISys_proapplyService {
+
+	@Autowired
+	private ISys_proapplyMapper iSys_proapplyMapper;
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_proapply selectSys_proapplyById(String id){
+		return iSys_proapplyMapper.selectsys_proapplyById(id);
+	}
+
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_proapply> selectSys_proapplyByParam(Map paramMap){ 
+		return iSys_proapplyMapper.selectsys_proapplyByParam(paramMap);
+	}
+
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_proapplyByParam(Map paramMap){ 
+		return iSys_proapplyMapper.selectCountsys_proapplyByParam(paramMap);
+	}
+
+	/**
+ * 更新 
+ * @return 
+ */ 
+ @Transactional
+	public  int updateSys_proapply(Sys_proapply sys_proapply){
+		return iSys_proapplyMapper.updatesys_proapply(sys_proapply);
+	}
+
+	/**
+ * 添加 
+ * @return
+ */ 
+ @Transactional
+	public  int addSys_proapply(Sys_proapply sys_proapply){
+		return iSys_proapplyMapper.addsys_proapply(sys_proapply);
+	}
+
+	/**
+ * 删除 
+ * @return 
+ */ 
+ @Transactional
+	public  int deleteSys_proapply(String id){
+		return iSys_proapplyMapper.deletesys_proapply(id);
+	}
+
+}
+

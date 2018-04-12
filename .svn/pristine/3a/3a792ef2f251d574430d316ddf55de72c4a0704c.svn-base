@@ -1,0 +1,40 @@
+package com.paas.service.sys_autsign;
+import java.util.List;
+import java.util.Map;
+import com.paas.model.sys_autsign.Sys_autsign;
+public interface ISys_autsignService {
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_autsign selectSys_autsignById(String id);
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_autsign> selectSys_autsignByParam(Map paramMap); 
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_autsignByParam(Map paramMap); 
+	/**
+ * 更新 
+ * @return 
+ */ 
+	public  int updateSys_autsign(Sys_autsign sys_autsign);
+	/**
+ * 添加 
+ * @return
+ */ 
+	public  int addSys_autsign(Sys_autsign sys_autsign);
+	/**
+ * 删除 
+ * @return 
+ */ 
+	public  int deleteSys_autsign(String id);
+
+}
+

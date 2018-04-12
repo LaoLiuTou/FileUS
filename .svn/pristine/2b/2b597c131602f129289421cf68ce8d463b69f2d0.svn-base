@@ -1,0 +1,70 @@
+package com.paas.service.sys_members;
+import java.util.List;
+import java.util.Map;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.paas.dao.sys_members.ISys_membersMapper;
+import com.paas.model.sys_members.Sys_members;
+public class Sys_membersServiceImpl  implements ISys_membersService {
+
+	@Autowired
+	private ISys_membersMapper iSys_membersMapper;
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_members selectSys_membersById(String id){
+		return iSys_membersMapper.selectsys_membersById(id);
+	}
+
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_members> selectSys_membersByParam(Map paramMap){ 
+		return iSys_membersMapper.selectsys_membersByParam(paramMap);
+	}
+
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_membersByParam(Map paramMap){ 
+		return iSys_membersMapper.selectCountsys_membersByParam(paramMap);
+	}
+
+	/**
+ * 更新 
+ * @return 
+ */ 
+ @Transactional
+	public  int updateSys_members(Sys_members sys_members){
+		return iSys_membersMapper.updatesys_members(sys_members);
+	}
+ @Transactional
+ public  int updateSys_membersPassword(Sys_members sys_members){
+	 return iSys_membersMapper.updateSys_membersPassword(sys_members);
+ }
+
+	/**
+ * 添加 
+ * @return
+ */ 
+ @Transactional
+	public  int addSys_members(Sys_members sys_members){
+		return iSys_membersMapper.addsys_members(sys_members);
+	}
+
+	/**
+ * 删除 
+ * @return 
+ */ 
+ @Transactional
+	public  int deleteSys_members(String id){
+		return iSys_membersMapper.deletesys_members(id);
+	}
+
+}
+

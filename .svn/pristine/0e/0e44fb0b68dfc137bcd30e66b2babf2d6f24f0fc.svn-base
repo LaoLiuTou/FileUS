@@ -1,0 +1,66 @@
+package com.paas.service.sys_datasources;
+import java.util.List;
+import java.util.Map;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.paas.dao.sys_datasources.ISys_datasourcesMapper;
+import com.paas.model.sys_datasources.Sys_datasources;
+public class Sys_datasourcesServiceImpl  implements ISys_datasourcesService {
+
+	@Autowired
+	private ISys_datasourcesMapper iSys_datasourcesMapper;
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_datasources selectSys_datasourcesById(String id){
+		return iSys_datasourcesMapper.selectsys_datasourcesById(id);
+	}
+
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_datasources> selectSys_datasourcesByParam(Map paramMap){ 
+		return iSys_datasourcesMapper.selectsys_datasourcesByParam(paramMap);
+	}
+
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_datasourcesByParam(Map paramMap){ 
+		return iSys_datasourcesMapper.selectCountsys_datasourcesByParam(paramMap);
+	}
+
+	/**
+ * 更新 
+ * @return 
+ */ 
+ @Transactional
+	public  int updateSys_datasources(Sys_datasources sys_datasources){
+		return iSys_datasourcesMapper.updatesys_datasources(sys_datasources);
+	}
+
+	/**
+ * 添加 
+ * @return
+ */ 
+ @Transactional
+	public  int addSys_datasources(Sys_datasources sys_datasources){
+		return iSys_datasourcesMapper.addsys_datasources(sys_datasources);
+	}
+
+	/**
+ * 删除 
+ * @return 
+ */ 
+ @Transactional
+	public  int deleteSys_datasources(String id){
+		return iSys_datasourcesMapper.deletesys_datasources(id);
+	}
+
+}
+

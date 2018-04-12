@@ -1,0 +1,40 @@
+package com.paas.service.sys_spareapply;
+import java.util.List;
+import java.util.Map;
+import com.paas.model.sys_spareapply.Sys_spareapply;
+public interface ISys_spareapplyService {
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_spareapply selectSys_spareapplyById(String id);
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_spareapply> selectSys_spareapplyByParam(Map paramMap); 
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_spareapplyByParam(Map paramMap); 
+	/**
+ * 更新 
+ * @return 
+ */ 
+	public  int updateSys_spareapply(Sys_spareapply sys_spareapply);
+	/**
+ * 添加 
+ * @return
+ */ 
+	public  int addSys_spareapply(Sys_spareapply sys_spareapply);
+	/**
+ * 删除 
+ * @return 
+ */ 
+	public  int deleteSys_spareapply(String id);
+
+}
+

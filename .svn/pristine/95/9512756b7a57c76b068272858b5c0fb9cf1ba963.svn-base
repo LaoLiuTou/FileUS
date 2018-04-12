@@ -1,0 +1,66 @@
+package com.paas.service.sys_autsign;
+import java.util.List;
+import java.util.Map;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.paas.dao.sys_autsign.ISys_autsignMapper;
+import com.paas.model.sys_autsign.Sys_autsign;
+public class Sys_autsignServiceImpl  implements ISys_autsignService {
+
+	@Autowired
+	private ISys_autsignMapper iSys_autsignMapper;
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_autsign selectSys_autsignById(String id){
+		return iSys_autsignMapper.selectsys_autsignById(id);
+	}
+
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_autsign> selectSys_autsignByParam(Map paramMap){ 
+		return iSys_autsignMapper.selectsys_autsignByParam(paramMap);
+	}
+
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_autsignByParam(Map paramMap){ 
+		return iSys_autsignMapper.selectCountsys_autsignByParam(paramMap);
+	}
+
+	/**
+ * 更新 
+ * @return 
+ */ 
+ @Transactional
+	public  int updateSys_autsign(Sys_autsign sys_autsign){
+		return iSys_autsignMapper.updatesys_autsign(sys_autsign);
+	}
+
+	/**
+ * 添加 
+ * @return
+ */ 
+ @Transactional
+	public  int addSys_autsign(Sys_autsign sys_autsign){
+		return iSys_autsignMapper.addsys_autsign(sys_autsign);
+	}
+
+	/**
+ * 删除 
+ * @return 
+ */ 
+ @Transactional
+	public  int deleteSys_autsign(String id){
+		return iSys_autsignMapper.deletesys_autsign(id);
+	}
+
+}
+

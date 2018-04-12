@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test title</title>
+    <script src="Js/jquery.js"></script>
+    <script>
+        $().ready(function(){
+
+            //console.log($('li').eq(2).text());
+
+            /*$('li:lt(2)').each(function () {
+                console.log($(this).text());
+            });*/
+            //$('form input').each(function () {
+            //$('form>input').each(function () {
+            /*$('textarea~input').each(function () {
+                console.log($(this).val());
+            });*/
+            //console.log($('form > input'));
+
+            /*$('input:not(:checked)').each(function () {
+                console.log($(this).val());
+            });*/
+
+            //$('li:even').css("color","red");
+
+            /*$('[id*=ext]').each(function () {
+                console.log($(this).val());
+            });*/
+           /* $('input:disabled').each(function () {
+                console.log($(this).val());
+            });*/
+           /* $('ul>li').each(function () {
+                console.log($(this).text());
+            });*/
+
+
+            $("#upload").click(function () {
+                $("#imgWait").show();
+                var formData = new FormData();
+                formData.append("filename", $('#fileinput').prop('files')[0]);
+                $.ajax({
+                    url: "http://192.168.1.144/Check/FileUpload",
+                    type: "POST",
+                    data: formData,
+                    /**
+                     *必须false才会自动加上正确的Content-Type
+                     */
+                    contentType: false,
+                    /**
+                     * 必须false才会避开jQuery对 formdata 的默认处理
+                     * XMLHttpRequest会对 formdata 进行正确的处理
+                     */
+                    processData: false,
+
+                     dataType : "jsonp",
+                    //传递给请求处理程序，用以获得jsonp回调函数名的参数名(默认为:callback)
+                    jsonp: "callback",
+                    //自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名
+                    jsonpCallback:"success_jsonpCallback", 
+
+
+                    success: function (data) {
+                        console.log(data);
+
+                    },
+                    error: function () {
+                        alert("上传失败！");
+
+                    }
+                });
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+<form>
+    <input type="text" value="firsttext" disabled="disabled"><br>
+    <textarea id="textarea">firsttextarea</textarea><br>
+    <fieldset>
+        <label>Newsletter:</label>
+        <input type="text" value="secondtext"><br>
+        <input type="text" value="thirdtext"><br>
+    </fieldset>
+    <input type="button" value="按钮"><br>
+    <input type="checkbox" checked="checked" value="checkbox1"><input type="checkbox" value="checkbox2"><br>
+    <input type="submit" value="提交">
+
+</form>
+
+<ul>
+    <li>list item 1</li>
+    <li>list item 2</li>
+    <li>list item 3</li>
+    <li>list item 4</li>
+    <li>list item 5</li>
+</ul>
+   <form id="uploadForm" action="http://192.168.1.110:8888/FileUS/filesUpload" method="post" enctype="multipart/form-data">  
+        <input type="file" name="files" id="fileinput" multiple="multiple"/>
+        <input type="text" name="project" value="222"/>
+        <input type="submit"   value="上传"/>
+  </form>
+ 
+</body>
+</html>

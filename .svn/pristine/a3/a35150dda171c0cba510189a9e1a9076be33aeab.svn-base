@@ -1,0 +1,40 @@
+package com.paas.service.sys_authority;
+import java.util.List;
+import java.util.Map;
+import com.paas.model.sys_authority.Sys_authority;
+public interface ISys_authorityService {
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_authority selectSys_authorityById(String id);
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_authority> selectSys_authorityByParam(Map paramMap); 
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_authorityByParam(Map paramMap); 
+	/**
+ * 更新 
+ * @return 
+ */ 
+	public  int updateSys_authority(Sys_authority sys_authority);
+	/**
+ * 添加 
+ * @return
+ */ 
+	public  int addSys_authority(Sys_authority sys_authority);
+	/**
+ * 删除 
+ * @return 
+ */ 
+	public  int deleteSys_authority(String id);
+
+}
+

@@ -1,0 +1,66 @@
+package com.paas.service.sys_authority;
+import java.util.List;
+import java.util.Map;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.paas.dao.sys_authority.ISys_authorityMapper;
+import com.paas.model.sys_authority.Sys_authority;
+public class Sys_authorityServiceImpl  implements ISys_authorityService {
+
+	@Autowired
+	private ISys_authorityMapper iSys_authorityMapper;
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_authority selectSys_authorityById(String id){
+		return iSys_authorityMapper.selectsys_authorityById(id);
+	}
+
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_authority> selectSys_authorityByParam(Map paramMap){ 
+		return iSys_authorityMapper.selectsys_authorityByParam(paramMap);
+	}
+
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_authorityByParam(Map paramMap){ 
+		return iSys_authorityMapper.selectCountsys_authorityByParam(paramMap);
+	}
+
+	/**
+ * 更新 
+ * @return 
+ */ 
+ @Transactional
+	public  int updateSys_authority(Sys_authority sys_authority){
+		return iSys_authorityMapper.updatesys_authority(sys_authority);
+	}
+
+	/**
+ * 添加 
+ * @return
+ */ 
+ @Transactional
+	public  int addSys_authority(Sys_authority sys_authority){
+		return iSys_authorityMapper.addsys_authority(sys_authority);
+	}
+
+	/**
+ * 删除 
+ * @return 
+ */ 
+ @Transactional
+	public  int deleteSys_authority(String id){
+		return iSys_authorityMapper.deletesys_authority(id);
+	}
+
+}
+

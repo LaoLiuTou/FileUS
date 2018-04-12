@@ -1,0 +1,66 @@
+package com.paas.service.sys_spareinfo;
+import java.util.List;
+import java.util.Map;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.paas.dao.sys_spareinfo.ISys_spareinfoMapper;
+import com.paas.model.sys_spareinfo.Sys_spareinfo;
+public class Sys_spareinfoServiceImpl  implements ISys_spareinfoService {
+
+	@Autowired
+	private ISys_spareinfoMapper iSys_spareinfoMapper;
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_spareinfo selectSys_spareinfoById(String id){
+		return iSys_spareinfoMapper.selectsys_spareinfoById(id);
+	}
+
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_spareinfo> selectSys_spareinfoByParam(Map paramMap){ 
+		return iSys_spareinfoMapper.selectsys_spareinfoByParam(paramMap);
+	}
+
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_spareinfoByParam(Map paramMap){ 
+		return iSys_spareinfoMapper.selectCountsys_spareinfoByParam(paramMap);
+	}
+
+	/**
+ * 更新 
+ * @return 
+ */ 
+ @Transactional
+	public  int updateSys_spareinfo(Sys_spareinfo sys_spareinfo){
+		return iSys_spareinfoMapper.updatesys_spareinfo(sys_spareinfo);
+	}
+
+	/**
+ * 添加 
+ * @return
+ */ 
+ @Transactional
+	public  int addSys_spareinfo(Sys_spareinfo sys_spareinfo){
+		return iSys_spareinfoMapper.addsys_spareinfo(sys_spareinfo);
+	}
+
+	/**
+ * 删除 
+ * @return 
+ */ 
+ @Transactional
+	public  int deleteSys_spareinfo(String id){
+		return iSys_spareinfoMapper.deletesys_spareinfo(id);
+	}
+
+}
+

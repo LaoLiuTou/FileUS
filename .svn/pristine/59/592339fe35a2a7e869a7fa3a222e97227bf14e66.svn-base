@@ -1,0 +1,56 @@
+package com.paas.utils;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DbsizeUtils {
+
+	
+	public static void main(String[] args){
+		String size=getDbSize("jdbc:mysql://192.168.1.151:3306/jiance1","root","JiubaiSoft@123","jiance");
+		System.out.println(size);
+		 
+		
+	}
+	
+	public static String getDbSize(String url,String username,String password,String dbname){
+		String dbsize="";
+	 
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection(url, username, password);
+				Statement stmt = conn.createStatement();
+				String selectSql = " SELECT CONCAT(TRUNCATE(SUM(data_length)/1024/1024,2),'MB') AS data_size " +
+						"FROM information_schema.tables WHERE TABLE_SCHEMA ='"+dbname+"';";
+				
+				ResultSet rs = stmt.executeQuery(selectSql);
+				//如果有数据，rs.next()返回true
+				while(rs.next()){
+					String data_size=rs.getString("data_size");
+					if(data_size!=null){
+						dbsize=data_size;
+					} 
+					else{
+						dbsize="0MB";
+					}
+				}
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		 
+		return dbsize;
+	}
+}
+
+
+ 

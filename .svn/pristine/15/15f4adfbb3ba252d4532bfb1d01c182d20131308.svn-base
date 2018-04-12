@@ -1,0 +1,66 @@
+package com.paas.service.sys_org;
+import java.util.List;
+import java.util.Map;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.paas.dao.sys_org.ISys_orgMapper;
+import com.paas.model.sys_org.Sys_org;
+public class Sys_orgServiceImpl  implements ISys_orgService {
+
+	@Autowired
+	private ISys_orgMapper iSys_orgMapper;
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_org selectSys_orgById(String id){
+		return iSys_orgMapper.selectsys_orgById(id);
+	}
+
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_org> selectSys_orgByParam(Map paramMap){ 
+		return iSys_orgMapper.selectsys_orgByParam(paramMap);
+	}
+
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_orgByParam(Map paramMap){ 
+		return iSys_orgMapper.selectCountsys_orgByParam(paramMap);
+	}
+
+	/**
+ * 更新 
+ * @return 
+ */ 
+ @Transactional
+	public  int updateSys_org(Sys_org sys_org){
+		return iSys_orgMapper.updatesys_org(sys_org);
+	}
+
+	/**
+ * 添加 
+ * @return
+ */ 
+ @Transactional
+	public  int addSys_org(Sys_org sys_org){
+		return iSys_orgMapper.addsys_org(sys_org);
+	}
+
+	/**
+ * 删除 
+ * @return 
+ */ 
+ @Transactional
+	public  int deleteSys_org(String id){
+		return iSys_orgMapper.deletesys_org(id);
+	}
+
+}
+

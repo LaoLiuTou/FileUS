@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paas.dao.sys_product.ISys_productMapper"> 
+	<select id="selectsys_productById" parameterType="String" resultType="Sys_product">
+		SELECT * FROM sys_product WHERE ID=#{id}
+	</select>
+
+
+	<delete id="deletesys_product" parameterType="String"> 
+		DELETE FROM sys_product WHERE ID=#{id}
+	</delete>
+
+	<select id="selectsys_productByParam" parameterType="java.util.Map" resultType="Sys_product">
+		SELECT *
+		FROM sys_product
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="id != null"> AND ID =#{id} </if>
+			<if test="mem_id != null"> AND MEM_ID =#{mem_id} </if>
+			<if test="nm_t != null"> AND NM_T =#{nm_t} </if>
+			<if test="cla != null"> AND CLA =#{cla} </if>
+			<if test="note != null"> AND NOTE =#{note} </if>
+			<if test="price != null"> AND PRICE =#{price} </if>
+			<if test="status != null"> AND STATUS =#{status} </if>
+			<if test="c_dtFrom != null"> AND unix_timestamp(C_DT) &gt;=unix_timestamp(#{c_dtFrom}) </if>
+			<if test="c_dtTo != null"> AND unix_timestamp(C_DT) &lt;=unix_timestamp(#{c_dtTo}) </if>
+			<if test="c_dt != null"> AND C_DT =#{c_dt} </if>
+			<if test="up_dtFrom != null"> AND unix_timestamp(UP_DT) &gt;=unix_timestamp(#{up_dtFrom}) </if>
+			<if test="up_dtTo != null"> AND unix_timestamp(UP_DT) &lt;=unix_timestamp(#{up_dtTo}) </if>
+			<if test="up_dt != null"> AND UP_DT =#{up_dt} </if>
+		</trim>  
+		ORDER BY ID DESC 
+		LIMIT #{fromPage},#{toPage} 
+	</select>
+
+	<select id="selectCountsys_productByParam" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(ID) 
+		FROM sys_product 
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="id != null"> AND ID =#{id} </if>
+			<if test="mem_id != null"> AND MEM_ID =#{mem_id} </if>
+			<if test="nm_t != null"> AND NM_T =#{nm_t} </if>
+			<if test="cla != null"> AND CLA =#{cla} </if>
+			<if test="note != null"> AND NOTE =#{note} </if>
+			<if test="price != null"> AND PRICE =#{price} </if>
+			<if test="status != null"> AND STATUS =#{status} </if>
+			<if test="c_dtFrom != null"> AND unix_timestamp(C_DT) &gt;=unix_timestamp(#{c_dtFrom}) </if>
+			<if test="c_dtTo != null"> AND unix_timestamp(C_DT) &lt;=unix_timestamp(#{c_dtTo}) </if>
+			<if test="c_dt != null"> AND C_DT =#{c_dt} </if>
+			<if test="up_dtFrom != null"> AND unix_timestamp(UP_DT) &gt;=unix_timestamp(#{up_dtFrom}) </if>
+			<if test="up_dtTo != null"> AND unix_timestamp(UP_DT) &lt;=unix_timestamp(#{up_dtTo}) </if>
+			<if test="up_dt != null"> AND UP_DT =#{up_dt} </if>
+		</trim>  
+	</select>
+
+	<update id="updatesys_product" parameterType="Sys_product">
+		UPDATE sys_product 
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="id != null">ID=#{id}, </if>
+			<if test="mem_id != null">MEM_ID=#{mem_id}, </if>
+			<if test="nm_t != null">NM_T=#{nm_t}, </if>
+			<if test="cla != null">CLA=#{cla}, </if>
+			<if test="note != null">NOTE=#{note}, </if>
+			<if test="price != null">PRICE=#{price}, </if>
+			<if test="status != null">STATUS=#{status}, </if>
+			<if test="c_dt != null">C_DT=#{c_dt}, </if>
+			<if test="up_dt != null">UP_DT=#{up_dt}, </if>
+		</trim>
+		WHERE ID=#{id}
+	</update>
+
+	<insert id="addsys_product" parameterType="Sys_product">
+		INSERT INTO sys_product 
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="mem_id != null">MEM_ID, </if>
+			<if test="nm_t != null">NM_T, </if>
+			<if test="cla != null">CLA, </if>
+			<if test="note != null">NOTE, </if>
+			<if test="price != null">PRICE, </if>
+			<if test="status != null">STATUS, </if>
+			<if test="c_dt != null">C_DT, </if>
+			<if test="up_dt != null">UP_DT, </if>
+		</trim>
+		<trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+			<if test="mem_id != null">#{mem_id}, </if>
+			<if test="nm_t != null">#{nm_t}, </if>
+			<if test="cla != null">#{cla}, </if>
+			<if test="note != null">#{note}, </if>
+			<if test="price != null">#{price}, </if>
+			<if test="status != null">#{status}, </if>
+			<if test="c_dt != null">#{c_dt}, </if>
+			<if test="up_dt != null">#{up_dt}, </if>
+		</trim>
+		<selectKey order="AFTER" resultType="long" keyProperty="id" > 
+			SELECT LAST_INSERT_ID()
+		</selectKey> 
+	</insert>
+</mapper>

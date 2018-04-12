@@ -1,0 +1,66 @@
+package com.paas.service.sys_product;
+import java.util.List;
+import java.util.Map;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.paas.dao.sys_product.ISys_productMapper;
+import com.paas.model.sys_product.Sys_product;
+public class Sys_productServiceImpl  implements ISys_productService {
+
+	@Autowired
+	private ISys_productMapper iSys_productMapper;
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_product selectSys_productById(String id){
+		return iSys_productMapper.selectsys_productById(id);
+	}
+
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_product> selectSys_productByParam(Map paramMap){ 
+		return iSys_productMapper.selectsys_productByParam(paramMap);
+	}
+
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_productByParam(Map paramMap){ 
+		return iSys_productMapper.selectCountsys_productByParam(paramMap);
+	}
+
+	/**
+ * 更新 
+ * @return 
+ */ 
+ @Transactional
+	public  int updateSys_product(Sys_product sys_product){
+		return iSys_productMapper.updatesys_product(sys_product);
+	}
+
+	/**
+ * 添加 
+ * @return
+ */ 
+ @Transactional
+	public  int addSys_product(Sys_product sys_product){
+		return iSys_productMapper.addsys_product(sys_product);
+	}
+
+	/**
+ * 删除 
+ * @return 
+ */ 
+ @Transactional
+	public  int deleteSys_product(String id){
+		return iSys_productMapper.deletesys_product(id);
+	}
+
+}
+

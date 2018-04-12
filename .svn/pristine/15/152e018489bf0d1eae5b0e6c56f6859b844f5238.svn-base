@@ -1,0 +1,40 @@
+package com.paas.dao.sys_order;
+import java.util.List;
+import java.util.Map;
+import com.paas.model.sys_order.Sys_order;
+	public interface ISys_orderMapper {
+	/**
+ 	* 通过id选取
+ 	* @return
+ 	*/
+	public Sys_order selectsys_orderById(String id);
+	/**
+ 	* 通过查询参数获取信息
+ 	* @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_order> selectsys_orderByParam(Map paramMap); 
+	/**
+		* 通过查询参数获取总条数
+	    * @return
+	*/ 
+	@SuppressWarnings("rawtypes")
+	public int selectCountsys_orderByParam(Map paramMap); 
+	/**
+ 	* 更新 
+ 	* @return 
+ */ 
+	public  int updatesys_order(Sys_order sys_order);
+	/**
+ 	* 添加 
+ 	* @return
+ */ 
+	public  int addsys_order(Sys_order sys_order);
+	/**
+ 	* 删除 
+ 	* @return 
+ */ 
+public  int deletesys_order(String id);
+
+}
+

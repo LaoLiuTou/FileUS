@@ -1,0 +1,83 @@
+package com.paas.model.sys_proapply;
+import java.util.Date;
+/**
+ * @author LT
+ */
+public class Sys_proapply {
+
+	/**  */
+	private  Long id;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	/** 企业ID */
+	private  Long org_id;
+	public Long getOrg_id() {
+		return org_id;
+	}
+	public void setOrg_id(Long org_id) {
+		this.org_id = org_id;
+	}
+	/** 项目ID */
+	private  Long pro_id;
+	public Long getPro_id() {
+		return pro_id;
+	}
+	public void setPro_id(Long pro_id) {
+		this.pro_id = pro_id;
+	}
+	/** 申请人ID */
+	private  Long app_id;
+	public Long getApp_id() {
+		return app_id;
+	}
+	public void setApp_id(Long app_id) {
+		this.app_id = app_id;
+	}
+	/** 审核人ID */
+	private  Long aud_id;
+	public Long getAud_id() {
+		return aud_id;
+	}
+	public void setAud_id(Long aud_id) {
+		this.aud_id = aud_id;
+	}
+	/** 创建者ID */
+	private  Long mem_id;
+	public Long getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(Long mem_id) {
+		this.mem_id = mem_id;
+	}
+	/** 状态 */
+	private  String status;
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	/** 创建时间 */
+	private  Date c_dt;
+	public Date getC_dt() {
+		return c_dt;
+	}
+	public void setC_dt(Date c_dt) {
+		this.c_dt = c_dt;
+	}
+	/** 最后修改时间 */
+	private  Date up_dt;
+	public Date getUp_dt() {
+		return up_dt;
+	}
+	public void setUp_dt(Date up_dt) {
+		this.up_dt = up_dt;
+	}
+
+
+
+}

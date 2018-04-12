@@ -1,0 +1,41 @@
+package com.paas.service.sys_members;
+import java.util.List;
+import java.util.Map;
+import com.paas.model.sys_members.Sys_members;
+public interface ISys_membersService {
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_members selectSys_membersById(String id);
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_members> selectSys_membersByParam(Map paramMap); 
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_membersByParam(Map paramMap); 
+	/**
+ * 更新 
+ * @return 
+ */ 
+	public  int updateSys_members(Sys_members sys_members);
+	public  int updateSys_membersPassword(Sys_members sys_members);
+	/**
+ * 添加 
+ * @return
+ */ 
+	public  int addSys_members(Sys_members sys_members);
+	/**
+ * 删除 
+ * @return 
+ */ 
+	public  int deleteSys_members(String id);
+
+}
+

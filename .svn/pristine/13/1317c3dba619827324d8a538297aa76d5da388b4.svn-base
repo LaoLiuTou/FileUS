@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="logImpl" value="STDOUT_LOGGING"/> 
+		<setting name="cacheEnabled" value="true"/> 
+		<setting name="lazyLoadingEnabled" value="true"/> 
+		<setting name="multipleResultSetsEnabled" value="true"/> 
+		<setting name="useColumnLabel" value="true"/> 
+		<setting name="useGeneratedKeys" value="false"/> 
+		<setting name="autoMappingBehavior" value="PARTIAL"/> 
+		<setting name="defaultExecutorType" value="SIMPLE"/> 
+		<setting name="defaultStatementTimeout" value="25"/> 
+		<setting name="safeRowBoundsEnabled" value="false"/> 
+		<setting name="mapUnderscoreToCamelCase" value="false"/> 
+		<setting name="localCacheScope" value="SESSION"/> 
+		<setting name="jdbcTypeForNull" value="OTHER"/> 
+		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/> 
+	</settings> 
+	<typeAliases>
+		<typeAlias alias="Sys_authority" type="com.paas.model.sys_authority.Sys_authority" /> 
+		<typeAlias alias="Sys_autsign" type="com.paas.model.sys_autsign.Sys_autsign" /> 
+		<typeAlias alias="Sys_datasources" type="com.paas.model.sys_datasources.Sys_datasources" /> 
+		<typeAlias alias="Sys_members" type="com.paas.model.sys_members.Sys_members" /> 
+		<typeAlias alias="Sys_order" type="com.paas.model.sys_order.Sys_order" /> 
+		<typeAlias alias="Sys_org" type="com.paas.model.sys_org.Sys_org" /> 
+		<typeAlias alias="Sys_proapply" type="com.paas.model.sys_proapply.Sys_proapply" /> 
+		<typeAlias alias="Sys_product" type="com.paas.model.sys_product.Sys_product" /> 
+		<typeAlias alias="Sys_projects" type="com.paas.model.sys_projects.Sys_projects" /> 
+		<typeAlias alias="Sys_spareapply" type="com.paas.model.sys_spareapply.Sys_spareapply" /> 
+		<typeAlias alias="Sys_spareinfo" type="com.paas.model.sys_spareinfo.Sys_spareinfo" /> 
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/paas/model/sys_authority/Sys_authority.xml"/> 
+		<mapper resource="com/paas/model/sys_autsign/Sys_autsign.xml"/> 
+		<mapper resource="com/paas/model/sys_datasources/Sys_datasources.xml"/> 
+		<mapper resource="com/paas/model/sys_members/Sys_members.xml"/> 
+		<mapper resource="com/paas/model/sys_order/Sys_order.xml"/> 
+		<mapper resource="com/paas/model/sys_org/Sys_org.xml"/> 
+		<mapper resource="com/paas/model/sys_proapply/Sys_proapply.xml"/> 
+		<mapper resource="com/paas/model/sys_product/Sys_product.xml"/> 
+		<mapper resource="com/paas/model/sys_projects/Sys_projects.xml"/> 
+		<mapper resource="com/paas/model/sys_spareapply/Sys_spareapply.xml"/> 
+		<mapper resource="com/paas/model/sys_spareinfo/Sys_spareinfo.xml"/> 
+	</mappers>  
+</configuration>

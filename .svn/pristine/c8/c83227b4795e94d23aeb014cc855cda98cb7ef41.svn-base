@@ -1,0 +1,40 @@
+package com.paas.dao.sys_product;
+import java.util.List;
+import java.util.Map;
+import com.paas.model.sys_product.Sys_product;
+	public interface ISys_productMapper {
+	/**
+ 	* 通过id选取
+ 	* @return
+ 	*/
+	public Sys_product selectsys_productById(String id);
+	/**
+ 	* 通过查询参数获取信息
+ 	* @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_product> selectsys_productByParam(Map paramMap); 
+	/**
+		* 通过查询参数获取总条数
+	    * @return
+	*/ 
+	@SuppressWarnings("rawtypes")
+	public int selectCountsys_productByParam(Map paramMap); 
+	/**
+ 	* 更新 
+ 	* @return 
+ */ 
+	public  int updatesys_product(Sys_product sys_product);
+	/**
+ 	* 添加 
+ 	* @return
+ */ 
+	public  int addsys_product(Sys_product sys_product);
+	/**
+ 	* 删除 
+ 	* @return 
+ */ 
+public  int deletesys_product(String id);
+
+}
+

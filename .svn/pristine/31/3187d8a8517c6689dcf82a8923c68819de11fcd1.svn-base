@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc/jdbc.properties"/>
+</bean>
+<!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="${driverClassName}"/>
+	<property name="url" value="${url}"/>
+	<property name="username" value="${username}"/>
+	<property name="password" value="${password}"/>
+</bean>-->
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<property name="driverClassName"><value>${driverClassName}</value></property>
+	<property name="url"><value>${url}</value></property> 
+	<property name="username"><value>${username}</value></property>
+	<property name="password"><value>${password}</value></property>
+	<property name="maxActive"><value>255</value></property> 
+	<property name="maxIdle"><value>2</value></property>
+	<property name="maxWait"><value>120000</value></property>
+</bean>
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="configLocation"><value>classpath:Configuration.xml</value></property>
+	<property name="dataSource"><ref bean="dataSource"/></property>
+ </bean>
+<bean id="sqlSessionTemplate_app" class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg index="0" ref="sqlSessionFactory" />
+</bean>
+<!-- 该 BeanPostProcessor 将自动起作用，对标注 @Autowired 的 Bean 进行自动注入 -->
+<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+<!-- 配置事务管理器 -->
+<bean id="transactionManager"
+	class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+	p:dataSource-ref="dataSource">
+</bean>
+<!-- 配置多个事务管理器 -->
+<!--<bean id="tran_1"
+	class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+	p:dataSource-ref="dataSource">
+	<qualifier value="tran_1"/>
+</bean>
+@Transactional("tran_1")
+-->
+<!-- enables scanning for @Transactional annotations -->
+<tx:annotation-driven transaction-manager="transactionManager"/>
+<bean id="iSys_authorityMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.paas.dao.sys_authority.ISys_authorityMapper "/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+<bean id="iSys_authorityService" class="com.paas.service.sys_authority.Sys_authorityServiceImpl"></bean>
+<bean id="iSys_autsignMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.paas.dao.sys_autsign.ISys_autsignMapper "/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+<bean id="iSys_autsignService" class="com.paas.service.sys_autsign.Sys_autsignServiceImpl"></bean>
+<bean id="iSys_datasourcesMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.paas.dao.sys_datasources.ISys_datasourcesMapper "/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+<bean id="iSys_datasourcesService" class="com.paas.service.sys_datasources.Sys_datasourcesServiceImpl"></bean>
+<bean id="iSys_membersMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.paas.dao.sys_members.ISys_membersMapper "/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+<bean id="iSys_membersService" class="com.paas.service.sys_members.Sys_membersServiceImpl"></bean>
+<bean id="iSys_orderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.paas.dao.sys_order.ISys_orderMapper "/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+<bean id="iSys_orderService" class="com.paas.service.sys_order.Sys_orderServiceImpl"></bean>
+<bean id="iSys_orgMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.paas.dao.sys_org.ISys_orgMapper "/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+<bean id="iSys_orgService" class="com.paas.service.sys_org.Sys_orgServiceImpl"></bean>
+<bean id="iSys_proapplyMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.paas.dao.sys_proapply.ISys_proapplyMapper "/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+<bean id="iSys_proapplyService" class="com.paas.service.sys_proapply.Sys_proapplyServiceImpl"></bean>
+<bean id="iSys_productMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.paas.dao.sys_product.ISys_productMapper "/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+<bean id="iSys_productService" class="com.paas.service.sys_product.Sys_productServiceImpl"></bean>
+<bean id="iSys_projectsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.paas.dao.sys_projects.ISys_projectsMapper "/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+<bean id="iSys_projectsService" class="com.paas.service.sys_projects.Sys_projectsServiceImpl"></bean>
+<bean id="iSys_spareapplyMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.paas.dao.sys_spareapply.ISys_spareapplyMapper "/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+<bean id="iSys_spareapplyService" class="com.paas.service.sys_spareapply.Sys_spareapplyServiceImpl"></bean>
+<bean id="iSys_spareinfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	<property name="mapperInterface" value="com.paas.dao.sys_spareinfo.ISys_spareinfoMapper "/>
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+<bean id="iSys_spareinfoService" class="com.paas.service.sys_spareinfo.Sys_spareinfoServiceImpl"></bean>
+</beans>

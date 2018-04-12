@@ -1,0 +1,66 @@
+package com.paas.service.sys_spareapply;
+import java.util.List;
+import java.util.Map;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.paas.dao.sys_spareapply.ISys_spareapplyMapper;
+import com.paas.model.sys_spareapply.Sys_spareapply;
+public class Sys_spareapplyServiceImpl  implements ISys_spareapplyService {
+
+	@Autowired
+	private ISys_spareapplyMapper iSys_spareapplyMapper;
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_spareapply selectSys_spareapplyById(String id){
+		return iSys_spareapplyMapper.selectsys_spareapplyById(id);
+	}
+
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_spareapply> selectSys_spareapplyByParam(Map paramMap){ 
+		return iSys_spareapplyMapper.selectsys_spareapplyByParam(paramMap);
+	}
+
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_spareapplyByParam(Map paramMap){ 
+		return iSys_spareapplyMapper.selectCountsys_spareapplyByParam(paramMap);
+	}
+
+	/**
+ * 更新 
+ * @return 
+ */ 
+ @Transactional
+	public  int updateSys_spareapply(Sys_spareapply sys_spareapply){
+		return iSys_spareapplyMapper.updatesys_spareapply(sys_spareapply);
+	}
+
+	/**
+ * 添加 
+ * @return
+ */ 
+ @Transactional
+	public  int addSys_spareapply(Sys_spareapply sys_spareapply){
+		return iSys_spareapplyMapper.addsys_spareapply(sys_spareapply);
+	}
+
+	/**
+ * 删除 
+ * @return 
+ */ 
+ @Transactional
+	public  int deleteSys_spareapply(String id){
+		return iSys_spareapplyMapper.deletesys_spareapply(id);
+	}
+
+}
+

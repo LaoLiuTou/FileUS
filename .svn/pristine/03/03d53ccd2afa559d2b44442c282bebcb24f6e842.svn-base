@@ -1,0 +1,66 @@
+package com.paas.service.sys_order;
+import java.util.List;
+import java.util.Map;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.paas.dao.sys_order.ISys_orderMapper;
+import com.paas.model.sys_order.Sys_order;
+public class Sys_orderServiceImpl  implements ISys_orderService {
+
+	@Autowired
+	private ISys_orderMapper iSys_orderMapper;
+	/**
+ * 通过id选取
+ * @return
+ */
+	public Sys_order selectSys_orderById(String id){
+		return iSys_orderMapper.selectsys_orderById(id);
+	}
+
+	/**
+ * 通过查询参数获取信息
+ * @return
+ */ 
+ @SuppressWarnings("rawtypes")
+	public List<Sys_order> selectSys_orderByParam(Map paramMap){ 
+		return iSys_orderMapper.selectsys_orderByParam(paramMap);
+	}
+
+	/**
+	* 通过查询参数获取总条数
+	 * @return
+	 */ 
+ @SuppressWarnings("rawtypes")
+	public int selectCountSys_orderByParam(Map paramMap){ 
+		return iSys_orderMapper.selectCountsys_orderByParam(paramMap);
+	}
+
+	/**
+ * 更新 
+ * @return 
+ */ 
+ @Transactional
+	public  int updateSys_order(Sys_order sys_order){
+		return iSys_orderMapper.updatesys_order(sys_order);
+	}
+
+	/**
+ * 添加 
+ * @return
+ */ 
+ @Transactional
+	public  int addSys_order(Sys_order sys_order){
+		return iSys_orderMapper.addsys_order(sys_order);
+	}
+
+	/**
+ * 删除 
+ * @return 
+ */ 
+ @Transactional
+	public  int deleteSys_order(String id){
+		return iSys_orderMapper.deletesys_order(id);
+	}
+
+}
+

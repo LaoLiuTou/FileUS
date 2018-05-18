@@ -1,0 +1,65 @@
+<html lang="zh-cn">
+  <head>
+     
+    <title>My JSP 'index.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+	<script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js"></script>  
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#start").click(function(){
+			 $.ajax({
+	           //url:'http://192.168.1.144/FileUS/createQrcode',
+	           url:'http://192.168.1.112:8999/FileUS/createQrcode',
+	           type:"POST",
+	           data : {'lot':'001-111111111111','code':'["00111100011100","00122200011100","00133300011100"]'},
+	           success:function(response) {
+	            console.log(JSON.stringify(response));
+	            $("#token").text(JSON.stringify(response));
+	            
+	           },
+	           error:function(response){
+	           	alert("wrong");   
+	           }   
+	         }); 
+		});
+	
+	}); 
+	</script>
+  </head>
+  
+  <body>
+  TOKEN:<div id="token"></div>
+  RESULT:<div id="result"></div>
+  <input type="button" id="start" value="测试">
+ 
+ 
+ <form action="http://192.168.1.144/DataPlatform/upload" enctype="multipart/form-data" method="post">
+        <table>
+             
+            <tr>
+                <td>请选择文件:</td>
+                <td><input type="file" name="file"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="上传"></td>
+            </tr>
+        </table>
+    </form>
+  </body>
+</html>
+新建二维码：
+http://192.168.1.112:8999/FileUS/createQrcode
+{'lot':'001-111111111111','code':'["00111100011100","00122200011100","00133300011100"]'}
+lot--批号   code--标识码数组
+下载：
+http://192.168.1.112:8999/FileUS/downloadZip?lot=001-111111111111&filename=下载
+ lot--批号   filename--下载后的文件名

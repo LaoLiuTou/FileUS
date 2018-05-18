@@ -32,7 +32,7 @@
         <property name="defaultEncoding" value="utf-8"></property>   
         <property name="maxUploadSize" value="10485760000"></property>  
         <property name="maxInMemorySize" value="40960"></property>  
-   </bean> 
+    </bean> 
 	<!-- 配置视图解析器 如何把handler 方法返回值解析为实际的物理视图  根据控制器返回的字符串拼接成jsp路径：/WEB-INF/jsp/xx.jsp -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name = "prefix" value="/WEB-INF/jsp/"></property>

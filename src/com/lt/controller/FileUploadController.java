@@ -89,5 +89,14 @@ public class FileUploadController {
         return resultMap;  
     }  
     
-	
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+   	@RequestMapping("/filesDelete")  
+    @ResponseBody
+    public Map filesDelete(HttpServletRequest request) { 
+    	Map resultMap=new HashMap();
+       	
+    	resultMap.put("status", "0");
+		resultMap.put("data", "0");
+		return resultMap;  
+    }
 }

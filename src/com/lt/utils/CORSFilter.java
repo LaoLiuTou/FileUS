@@ -28,7 +28,7 @@ public class CORSFilter implements Filter {
 	    response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");  
 	    response.setHeader("Access-Control-Max-Age", "3600");  
 	    //response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-	    response.setHeader("Access-Control-Allow-Headers","x-requested-with,content-type,token,timesamp,sign");
+	    response.setHeader("Access-Control-Allow-Headers","x-requested-with,content-type,X_Requested_With");
 	    //response.setHeader("Access-Control-Allow-Headers","x-requested-with,content-type，requesttype");
         
 	    //String uri = request.getServletPath();
